@@ -1,6 +1,6 @@
 package lacos_repeticao;
 
-class exe06 {
+class lacos_repeticao_exe06 {
     
     public static void main(String[] args){
         int num_anterior = 1;
