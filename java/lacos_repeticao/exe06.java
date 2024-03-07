@@ -1,7 +1,7 @@
 package lacos_repeticao;
 
 class lacos_repeticao_exe06 {
-    
+    // Fibonacci
     public static void main(String[] args){
         int num_anterior = 1;
 
