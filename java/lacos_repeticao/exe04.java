@@ -18,7 +18,7 @@ class lacos_repeticao_exe04 {
 
             soma += num;
     
-        }while(num == 0);
+        }while(num != 0);
 
         System.out.printf("Soma total: %d", soma);
 
