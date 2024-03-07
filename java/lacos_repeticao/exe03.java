@@ -14,7 +14,7 @@ class lacos_repeticao_exe03 {
 
         for(i = 1; i <= control_number; i++){
             if(i % 2 == 0){
-                System.out.println(10);
+                System.out.println(i);
             }
         }
 
