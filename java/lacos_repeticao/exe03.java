@@ -8,11 +8,9 @@ class lacos_repeticao_exe03 {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Digite o numero de controle: ");
-        int control_number = input.nextInt();
+        int control_number = input.nextInt(); 
 
-        int i = 1; 
-
-        for(i = 1; i <= control_number; i++){
+        for(int i = 1; i <= control_number; i++){
             if(i % 2 == 0){
                 System.out.println(i);
             }
