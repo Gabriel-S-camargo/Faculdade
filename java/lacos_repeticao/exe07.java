@@ -8,7 +8,7 @@ class lacos_repeticao_exe07 {
         float denominador = 100;
 
         float soma = 0;
-
+        
         for(int i = 0; i < 100; i++){
 
             soma += numerador / denominador;
@@ -18,7 +18,6 @@ class lacos_repeticao_exe07 {
             denominador--;
 
         }
-
         System.out.printf("Soma Final: %.2f", soma );
     }
 
