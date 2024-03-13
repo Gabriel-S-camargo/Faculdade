@@ -1,5 +1,5 @@
 package matrizes;
 
-class exe01 {
+class matrizes_exe01 {
     
 }
