@@ -13,7 +13,21 @@ package programacao_objetos;
             System.out.println("falando: " + this.falando);
         }
 
+        public void falar(){
+            if(this.falando == true){
+                System.out.println(this.nome + " ja Esta falando");
 
+            }else{
+                this.falando = true;
+                System.out.println(this.nome + " Esta falando");
+                
+            }
+        }
+
+        public void parar_de_falar(){
+                this.falando = false;
+                System.out.println(this.nome + " Parou de Falar");
+        }
 
     }
 
@@ -22,13 +36,15 @@ package programacao_objetos;
 
             Pessoa p1 = new Pessoa();
             p1.nome = "Gabriel";
-            p1.idade = 55;
+            p1.idade = 19;
+            p1.falando = true;
 
             Pessoa p2 = new Pessoa();
             p2.nome = "Pedro";
             p2.idade = 24;
 
-            p1.status();
+            p1.falar();
+            p1.falar();
             
 
 
