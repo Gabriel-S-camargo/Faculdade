@@ -86,8 +86,5 @@ package programacao_objetos;
             p1.falar();
 
 
-
-
-
         }
 }
