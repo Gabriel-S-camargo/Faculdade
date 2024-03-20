@@ -1,6 +1,6 @@
 package programacao_objetos;
 
-    class Pessoa {
+    class Pessoa_exemplo {
         String nome;
         int idade;
         boolean falando = false;
@@ -69,12 +69,12 @@ package programacao_objetos;
     class objeto_exemplo {
         public static void main(String[] args){
 
-            Pessoa p1 = new Pessoa();
+            Pessoa_exemplo p1 = new Pessoa_exemplo();
             p1.nome = "Gabriel";
             p1.idade = 19;
 
             
-            Pessoa p2 = new Pessoa();
+            Pessoa_exemplo p2 = new Pessoa_exemplo();
             p2.nome = "Pedro";
             p2.idade = 24;
 

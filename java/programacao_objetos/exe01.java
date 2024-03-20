@@ -7,13 +7,13 @@ class contaCorrente {
     double saldoUser = 0;  
 
     public void deposito(double valorDeposito){
-        saldoUser += valorDeposito;
+        this.saldoUser += valorDeposito;
         System.out.printf("\nDeposito realizado!\nNome do Beneficiario: %s \nSaldo atual: %.2f",nomeUser, saldoUser);
     }
 
     public void saque(double valorSaque){
            
-            if(valorSaque < saldoUser){
+            if(valorSaque < this.saldoUser){
                 
                 saldoUser -= valorSaque;
                 System.out.printf("\nSaque realizado!\nNome do Beneficiario: %s \nSaldo atual: %.2f",nomeUser, saldoUser);
