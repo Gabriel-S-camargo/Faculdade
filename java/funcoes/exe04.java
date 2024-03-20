@@ -11,7 +11,7 @@ class funcoes_exe04 {
         if(maior < num02){
             maior = num02;
         }
-        else if(maior < num03){
+        if(maior < num03){
             maior = num03;
         }
 
