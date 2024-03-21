@@ -1,7 +1,7 @@
 package programacao_objetos;
 
 class bombaCombustivel {
-    
+
     int numBomba;
     String tipoCombustivel;
     double valorLitro;
@@ -17,7 +17,7 @@ class bombaCombustivel {
         else{
             this.quantidadeBomba -= quantidadeAbastecida;
 
-            System.out.printf("\nAbastecimento concluido!\nQuantidade abastecida: %.2f\n quantidade Bomba disponível: %.2f", quantidadeAbastecida, this.quantidadeBomba);
+            System.out.printf("\nAbastecimento concluido!\nQuantidade abastecida: %.2f\nquantidade Bomba disponível: %.2f", quantidadeAbastecida, this.quantidadeBomba);
         }
 
     }
@@ -32,16 +32,16 @@ class bombaCombustivel {
         else{
             this.quantidadeBomba -= quantidadeAbastecimento;
 
-            System.out.printf("\nAbastecimento concluido!\nValor a pagar: %.2f\n quantidade Bomba disponível: %.2f", valorAbastecido, this.quantidadeBomba);
+            System.out.printf("\nAbastecimento concluido!\nValor a pagar: %.2f\nquantidade Bomba disponível: %.2f", valorAbastecido, this.quantidadeBomba);
         }
 
     }
 
-    public void alterarValor(double novoValor){
+    public void alterarValor(double novoValor, bombaCombustivel bomba){
 
         this.valorLitro = novoValor;
 
-        System.out.printf("\nValor Atualizado\n Novo valor do Litro: %.2f", this.valorLitro);
+        System.out.printf("\nValor Atualizado\nNovo valor do Litro: %.2f", this.valorLitro);
 
     }
 
@@ -65,6 +65,7 @@ class bombaCombustivel {
 
 class poo_exe03{
 
+
     public static void main(String[] args){
 
         bombaCombustivel b1 = new bombaCombustivel();
@@ -74,10 +75,17 @@ class poo_exe03{
         b1.tipoCombustivel = "Gasolina";
         b1.valorLitro = 6.00;
 
+        bombaCombustivel b2 = new bombaCombustivel();
+
+        b2.numBomba = 2;
+        b2.quantidadeBomba = 100;
+        b2.tipoCombustivel = "Gasolina";
+        b2.valorLitro = 7;
+
         b1.status();
         b1.abastecerPorLitro(10);
         b1.status();
-        b1.alterarValor(6.10);
+        b1.alterarValor(6.10, b2);
         b1.status();
 
     }
