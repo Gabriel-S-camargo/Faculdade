@@ -44,10 +44,30 @@ class Jogador {
 
     public void aumentarPontuacao(int pontuacaoAdicionada){
 
-        
+        this.pontuacao += pontuacaoAdicionada;
 
+        System.out.println("Pontuacao Adicionada com sucessor! pontuacao Atual: " + this.getPontuacao());
 
     }
 
+    public void subirNivel(int novoNivel){
+
+        this.nivel = novoNivel;
+
+        System.out.println("Nivel Atualizado ! Novo nível: " + this.getNivel());
+
+    }
+
+
+}
+
+
+class extra_poo_exe04{
+
+    public static void main(String[] args){
+
+
+        
+    }
 
 }
