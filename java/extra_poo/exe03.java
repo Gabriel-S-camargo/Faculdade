@@ -8,6 +8,9 @@ class Caneta{
     public boolean tampada;
     public boolean escrevendo ;
 
+
+    // Builder 
+    
     public Caneta(String marca, String cor){
         this.setCor(cor);
         this.setMarca(marca);
