@@ -199,8 +199,11 @@ class atividade_1 {
     
     public static void main(String[] args){
 
+        // builder
         Conta c1 = new Conta();
 
+        // testes
+        
         c1.infoConta();
         c1.abrirConta(1, "CP", "Gabriel");
         c1.pagarMensalidade();
@@ -212,6 +215,5 @@ class atividade_1 {
         c1.deposito(10);
 
     }
-
 
 }
