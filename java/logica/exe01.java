@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 class logi_exe01 {   
     public static void main(String[] args){
