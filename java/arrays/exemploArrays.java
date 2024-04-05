@@ -53,7 +53,7 @@ class exemploArrays {
 
             switch (opcao) {
 
-// Opção de Adicionar Contato
+                // Opção de Adicionar Contato
 
                 case 1:
 
@@ -82,11 +82,10 @@ class exemploArrays {
                                     "Erro ao adicionar o contato. Certifique-se de que o nome e o telefone não estão vazios.");
                         }
 
-                        
                     }
 
                     break;
-// Opção de busca Contato
+                // Opção de busca Contato
 
                 case 2:
 
@@ -101,7 +100,7 @@ class exemploArrays {
                     int j = 0;
                     switch (opcaoBusca) {
                         case 1:
-                        // Busca pelo Nome do contato
+                            // Busca pelo Nome do contato
                             System.out.println("Digite o nome a ser buscado: ");
                             String nomeBusca = input.nextLine();
 
@@ -110,7 +109,8 @@ class exemploArrays {
 
                                     if (contato[i].getNome().equalsIgnoreCase(nomeBusca)) {
 
-                                        contatosEncontrados[j] = new Contato(contato[i].getNome(),contato[i].getTelefone());
+                                        contatosEncontrados[j] = new Contato(contato[i].getNome(),
+                                                contato[i].getTelefone());
                                         j++;
                                     }
                                 }
@@ -134,39 +134,41 @@ class exemploArrays {
                             }
 
                         case 2:
-                        
-                        // Busca pelo telefone do Contato 
 
-                        System.out.println("Digite o telefone a ser buscado: ");
-                        String telefoneBusca = input.nextLine();
+                            // Busca pelo telefone do Contato
 
-                        if (telefoneBusca != null) {
-                            for (int i = 0; i < numContatos; i++) {
+                            System.out.println("Digite o telefone a ser buscado: ");
+                            String telefoneBusca = input.nextLine();
 
-                                if (contato[i].getTelefone().equals(telefoneBusca)) {
+                            if (telefoneBusca != null) {
+                                for (int i = 0; i < numContatos; i++) {
 
-                                    contatosEncontrados[j] = new Contato(contato[i].getNome(),contato[i].getTelefone());
-                                    j++;
+                                    if (contato[i].getTelefone().equals(telefoneBusca)) {
 
+                                        contatosEncontrados[j] = new Contato(contato[i].getNome(),
+                                                contato[i].getTelefone());
+                                        j++;
+
+                                    }
                                 }
-                            }
 
-                            if (j > 0) {
-                                System.out.println("Resultados Encontrados: ");
+                                if (j > 0) {
+                                    System.out.println("Resultados Encontrados: ");
 
-                                for (int k = 0; k < j; k++) {
-                                    System.out.println(
-                                            "Contato[" + (k + 1) + "]" + "\nNome: " + contatosEncontrados[k].getNome()+ "\nTelefone: " + contatosEncontrados[k].getTelefone());
+                                    for (int k = 0; k < j; k++) {
+                                        System.out.println(
+                                                "Contato[" + (k + 1) + "]" + "\nNome: "
+                                                        + contatosEncontrados[k].getNome() + "\nTelefone: "
+                                                        + contatosEncontrados[k].getTelefone());
+                                    }
+                                } else {
+                                    System.out.println("Nenhum contato encontrado.");
                                 }
+
+                                break;
                             } else {
-                                System.out.println("Nenhum contato encontrado.");
+                                break;
                             }
-
-                            break;
-                        } else {
-                            break;
-                        }
-
 
                         default:
                             System.out.println("ERRO! Opcao inválida");
@@ -174,12 +176,189 @@ class exemploArrays {
                     }
 
                     break;
-//Opção Listar Contatos
+                // Opção Editar Contato
                 case 3:
+
+                    System.out.println("[1] Pesquisar por nome");
+                    System.out.println("[2] Pesquisar por numero");
+
+                    int escolhaBusca = input.nextInt();
+                    input.nextLine();
+
+                    Contato[] contatoEncontrado = new Contato[5];
+
+                    int l = 0;
+                    switch (escolhaBusca) {
+                        case 1:
+                            // Busca pelo Nome do contato
+                            System.out.println("Digite o nome a ser buscado: ");
+                            String nomeBusca = input.nextLine();
+
+                            if (nomeBusca != null) {
+                                for (int i = 0; i < numContatos; i++) {
+
+                                    if (contato[i].getNome().equalsIgnoreCase(nomeBusca)) {
+
+                                        System.out.println("\nContato Localizado!");
+                                        System.out.println("\n[1] Editar Nome\n[2] Editar telefone\n[3] Ambos");
+                                        int opcaoEdicao = input.nextInt();
+
+                                        input.nextLine();
+
+                                        switch (opcaoEdicao) {
+                                            case 1:
+                                                System.out.println("\nDigite o nome desejado: ");
+                                                String novoNome = input.nextLine();
+
+                                                contato[i].setNome(novoNome);
+
+                                                System.out.println("\nContato Atualizado!");
+
+                                                break;
+
+                                            case 2:
+
+                                                System.out.println("\nDigite no numero do novo Telefone");
+                                                String novoTelefone = input.nextLine();
+
+                                                contato[i].setTelefone(novoTelefone);
+
+                                                System.out.println("\nContato Atualizado!");
+
+                                                break;
+
+                                            case 3:
+
+                                                System.out.println("\nDigite o nome desejado: ");
+                                                String novoNomeAmbos = input.nextLine();
+
+                                                System.out.println("\nDigite no numero do novo Telefone");
+                                                String novoTelefoneAmbos = input.nextLine();
+
+                                                contato[i].setNome(novoNomeAmbos);
+
+                                                contato[i].setTelefone(novoTelefoneAmbos);
+
+                                                System.out.println("\nContato Atualizado!");
+
+
+                                                break;
+
+                                            default:
+
+                                                System.out.println("\nOpção inválida");
+
+                                                break;
+                                        }
+
+                                        l++;
+                                    }
+                                }
+                                
+                                if( l == 0){
+                                    System.out.println("Nenhum resultado encontrado");
+
+                                }
+                                break;
+                                
+                            } else{
+                                break;
+                            }
+
+                        case 2:
+
+                            // Busca pelo telefone do Contato
+
+                            System.out.println("Digite o telefone a ser buscado: ");
+                            String telefoneBusca = input.nextLine();
+
+                            if (telefoneBusca != null) {
+                                for (int i = 0; i < numContatos; i++) {
+
+                                    if (contato[i].getNome().equalsIgnoreCase(telefoneBusca)) {
+
+                                        System.out.println("\nContato Localizado!");
+                                        System.out.println("\n[1] Editar Nome\n[2] Editar telefone\n[3] Ambos");
+                                        int opcaoEdicao = input.nextInt();
+
+                                        input.nextLine();
+
+                                        switch (opcaoEdicao) {
+                                            case 1:
+                                                System.out.println("\nDigite o nome desejado: ");
+                                                String novoNome = input.nextLine();
+
+                                                contato[i].setNome(novoNome);
+
+                                                System.out.println("\nContato Atualizado!");
+
+                                                break;
+
+                                            case 2:
+
+                                                System.out.println("\nDigite no numero do novo Telefone");
+                                                String novoTelefone = input.nextLine();
+
+                                                contato[i].setTelefone(novoTelefone);
+
+                                                System.out.println("\nContato Atualizado!");
+
+                                                break;
+
+                                            case 3:
+
+                                                System.out.println("\nDigite o nome desejado: ");
+                                                String novoNomeAmbos = input.nextLine();
+
+                                                System.out.println("\nDigite no numero do novo Telefone");
+                                                String novoTelefoneAmbos = input.nextLine();
+
+                                                contato[i].setNome(novoNomeAmbos);
+
+                                                contato[i].setTelefone(novoTelefoneAmbos);
+
+                                                System.out.println("\nContato Atualizado!");
+
+
+                                                break;
+
+                                            default:
+
+                                                System.out.println("\nOpção inválida");
+
+                                                break;
+                                        }
+
+                                        l++;
+                                    }
+                                }
+                                
+                                if( l == 0){
+                                    System.out.println("Nenhum resultado encontrado");
+
+                                }
+                                break;
+                                
+                            } else{
+                                break;
+                            }
+
+                    }
 
                     break;
 
+// opção Listar Contatos
+
                 case 4:
+
+                    System.out.println("Lista de contatos na agenda");
+
+                    for (int i = 0; i < numContatos; i++) {
+
+                        System.out.println("\nContato[" + i + 1 + "]\nNome: " + contato[i].getNome() + "\nTelefone: "
+                                + contato[i].getTelefone());
+
+                    }
 
                     break;
 
