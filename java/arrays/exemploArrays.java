@@ -44,7 +44,7 @@ class exemploArrays {
         boolean exit = false;
 
         do {
-            System.out.println("[1] Adicionar Contato");
+            System.out.println("\n[1] Adicionar Contato");
             System.out.println("[2] Buscar Contato");
             System.out.println("[3] Editar Contato");
             System.out.println("[4] Listar Contato");
@@ -273,7 +273,7 @@ class exemploArrays {
                             if (telefoneBusca != null) {
                                 for (int i = 0; i < numContatos; i++) {
 
-                                    if (contato[i].getNome().equalsIgnoreCase(telefoneBusca)) {
+                                    if (contato[i].getTelefone().equals(telefoneBusca)) {
 
                                         System.out.println("\nContato Localizado!");
                                         System.out.println("\n[1] Editar Nome\n[2] Editar telefone\n[3] Ambos");
