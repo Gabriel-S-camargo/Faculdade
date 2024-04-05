@@ -185,8 +185,6 @@ class exemploArrays {
                     int escolhaBusca = input.nextInt();
                     input.nextLine();
 
-                    Contato[] contatoEncontrado = new Contato[5];
-
                     int l = 0;
                     switch (escolhaBusca) {
                         case 1:
