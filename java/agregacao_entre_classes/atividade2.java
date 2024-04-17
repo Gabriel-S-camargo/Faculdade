@@ -78,6 +78,7 @@ class Bibioteca{
     public void adicionarLivro(Livro livro){
         this.livros[numLivros] = livro;
         numLivros++;
+        System.out.println("Livro adicionado com sucesso!!");
     }
 
     public void mostraInfo(){
