@@ -49,7 +49,6 @@ class Time{
 class Jogador{
     public String nomeJogador;
     public String posicao;
-    public int numJogadores;
 
     public Jogador(String nomeJogador, String posicao){
 
