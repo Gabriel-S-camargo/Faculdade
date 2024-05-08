@@ -1,4 +1,4 @@
-package heranca;
+package heranca_encapsulamento_polimorfismo;
 
 class Animal {
     String nome;

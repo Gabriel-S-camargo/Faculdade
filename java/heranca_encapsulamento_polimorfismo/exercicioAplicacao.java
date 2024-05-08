@@ -1,4 +1,4 @@
-package heranca;
+package heranca_encapsulamento_polimorfismo;
 
 class itemBiblioteca {
     public String titulo;
@@ -113,8 +113,6 @@ class exercicioAplicacao {
         dvd01.mostrarInfo();
 
         livro01.mostrarInfo();
-
-
 
     }
 }
