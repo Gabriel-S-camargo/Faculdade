@@ -11,7 +11,7 @@ class debugger2 {
             return true;
         }
 
-        Map<Character, Integer> mapT = new HashMap();
+        Map<Character, Integer> mapT = new HashMap<Character, Integer>();
 
         for(char testeS : charArray){
             if(mapT.containsKey(testeS)){
