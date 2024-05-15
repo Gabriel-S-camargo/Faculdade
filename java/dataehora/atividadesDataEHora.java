@@ -109,7 +109,7 @@ class atividadesDataEHora {
 
         estacionamento.add(carro01);
 
-        estacionamento.get(0).registrarSaida("11:30");
+        estacionamento.get(0).registrarSaida("16:00");
 
         estacionamento.get(0).imprimirRecibo();
 
