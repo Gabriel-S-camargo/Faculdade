@@ -69,7 +69,7 @@ class Carro {
              setTotalAPagar(5);
              System.out.println(tempoPermanencia.toMinutes() - 10);
         } else {
-            double tempVar = tempoPermanencia.toMinutes();
+            long tempVar = tempoPermanencia.toMinutes();
 
             tempVar -= 60;
 
@@ -109,7 +109,7 @@ class atividadesDataEHora {
 
         estacionamento.add(carro01);
 
-        estacionamento.get(0).registrarSaida("20:30cl");
+        estacionamento.get(0).registrarSaida("20:48");
 
         estacionamento.get(0).imprimirRecibo();
 
