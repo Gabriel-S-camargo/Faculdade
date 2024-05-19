@@ -100,7 +100,7 @@ class Carro {
 
 }
 
-class exercicioDataEHora2 {
+class sistema_estacionamento {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -126,12 +126,12 @@ class exercicioDataEHora2 {
                     System.out.println("Informe Placa do Veiculo");
                     String placaTemp = input.nextLine();
 
-                    Carro carro = new Carro(placaTemp);
+                    Carro carroA = new Carro(placaTemp);
 
                     if (estacionamento.size() <= 50) {
                         System.out.println("Informe vaga a ser estacionado o carro : ");
                         int vagaTemp = input.nextInt();
-                        estacionamento.put(vagaTemp, carro);
+                        estacionamento.put(vagaTemp, carroA);
                     } else {
                         System.out.println("Estacionamento Cheio! Impossivel realizar entrada");
                     }
