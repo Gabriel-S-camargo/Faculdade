@@ -1,0 +1,13 @@
+// Robots.txt
+// é um arquivo de texto simples usado para comunicar informações sobre um site para robôs de mecanismos de busca, como o Google, Bing, Yahoo e outros.
+// O arquivo robots.txt é colocado na raiz do site e contém instruções sobre quais páginas ou diretórios os robôs de busca devem ou não devem acessar e indexar.
+// Vamos analisar cada linha desses comandos:
+// User-agent:*
+// Essa linha especifica que as instruções a seguir se aplicam a todos os robôs de mecanismos de busca. O asterisco (*) é um caractere curinga que representa todos os agentes de usuário (robôs).
+// Disallow: /admin/
+// Essa linha instrui os robôs a não acessarem o diretório "/admin/" do site. Isso geralmente é usado para impedir que robôs acessem áreas administrativas ou de back-end do site que não devem ser indexadas.
+// Disallow: /ajax/
+// Essa linha instrui os robôs a não acessarem o diretório "/ajax/" do site. Isso pode ser usado para impedir que robôs acessem conteúdo carregado dinamicamente via AJAX, que geralmente não precisa ser indexado.
+
+
+// funcao para mostrar coisas na tela sem ficar precisando dar print toda a hora
