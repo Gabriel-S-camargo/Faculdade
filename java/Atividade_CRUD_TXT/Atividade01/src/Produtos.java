@@ -5,7 +5,7 @@ public class Produtos {
     public double precoUnitario;
     public int quantidadeEstoque;
 
-    public Produtos(int codigoProduto, String nomeProduto, double precoUnitario, int quantidadeEstoque){
+    public Produtos(int codigoProduto, String nomeProduto, double precoUnitario, int quantidadeEstoque) {
         this.codigoProduto = codigoProduto;
         this.nomeProduto = nomeProduto;
         this.precoUnitario = precoUnitario;
@@ -16,7 +16,7 @@ public class Produtos {
         return codigoProduto;
     }
 
-    public void setCodigoProduto(int codigoProduto){
+    public void setCodigoProduto(int codigoProduto) {
         this.codigoProduto = codigoProduto;
     }
 
@@ -42,6 +42,12 @@ public class Produtos {
 
     public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    @Override
+    public String toString() {
+        return "codigoProduto: " + codigoProduto + ", nomeProduto: " + nomeProduto + ", precoUnitario: " + precoUnitario
+                + ", quantidadeEstoque: " + quantidadeEstoque;
     }
 
 }
