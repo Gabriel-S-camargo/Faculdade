@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class App {
     // Sistema Gerenciamento de Produtos e Pedidos
 
-    private static final String ARQUIVOProdutos = "C:\\Users\\gabri\\Documents\\Programacao\\Faculdade\\java\\Atividade_CRUD_TXT\\Atividade01\\produtosATV.txt"; /* Nome do arquivo de texto dos produtos */
-
-    private static final String ARQUIVOPedidos = "C:\\Users\\gabri\\Documents\\Programacao\\Faculdade\\java\\Atividade_CRUD_TXT\\Atividade01\\pedidosATV.txt"; /* Nome do arquivo de texto dos pedidos */
+    // Arquivo TXT dos produtos PATH
+    private static final String ARQUIVOProdutos = "C:\\Users\\gabri\\Documents\\Programacao\\Faculdade\\java\\Atividade_CRUD_TXT\\Atividade01\\produtosATV.txt";
+    // Arquivo TXT dos pedidos PATH
+    private static final String ARQUIVOPedidos = "C:\\Users\\gabri\\Documents\\Programacao\\Faculdade\\java\\Atividade_CRUD_TXT\\Atividade01\\pedidosATV.txt";
 
     private static ArrayList<Produtos> produtos = new ArrayList<>(); /* Lista para armazenar os produtos */
 
@@ -19,9 +20,9 @@ public class App {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        boolean executando = true;
 
         carregarProdutos();
+        carregarPedidos();
 
         while (true) {
             System.out.println("# Menu principal #");
@@ -43,7 +44,7 @@ public class App {
                 case 3:
                     System.out.println("\nSistema Encerrando...");
                     salvarProduto();
-                    //salvarPedidos();
+                    salvarPedidos();
                     System.exit(0); // Encerra o programa
                     break;
                 default:
@@ -111,11 +112,11 @@ public class App {
             switch (opcao) {
                 case 1:
                     System.out.println("[1] Novo pedido");
-                    // inserirPedido();
+                    novoPedido();
                     break;
                 case 2:
                     System.out.println("[2] Listagem pedidos");
-                    // listarPedidos();
+                    listarPedidos();
                     break;
                 case 3:
                     System.out.println("\n");
@@ -126,6 +127,10 @@ public class App {
             }
         }
     }
+
+    // Metodos de carregamento do sistema
+
+    // Metodo para Carregar os Produtos no Inicio do sistema
 
     private static void carregarProdutos() {
         try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVOProdutos))) {
@@ -148,7 +153,41 @@ public class App {
     private static void salvarProduto() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVOProdutos))) {
             for (Produtos produtos : produtos) { /* Para cada contato na lista */
-                writer.write(produtos.getCodigoProduto() + ";" + produtos.getNomeProduto() + ";" + produtos.getPrecoUnitario() + ";" + produtos.getQuantidadeEstoque()); 
+                writer.write(produtos.getCodigoProduto() + ";" + produtos.getNomeProduto() + ";"
+                        + produtos.getPrecoUnitario() + ";" + produtos.getQuantidadeEstoque());
+                writer.newLine(); /* Adiciona uma quebra de linha */
+            }
+        } catch (IOException e) { /* Trata erros de escrita no arquivo */
+            System.out.println("Erro ao salvar arquivo: " + e.getMessage());
+        }
+    }
+
+    // Metodos de carregar os Pedidos
+
+    private static void carregarPedidos() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVOPedidos))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) { /* Le cada linha do arquivo */
+                String[] line = linha.split(";"); /* Divide a linha nos atributos do contato */
+                int numeroPedido = Integer.parseInt(line[0]);
+                int codigoProduto = Integer.parseInt(line[1]);
+                double precoUnitario = Float.parseFloat(line[2]);
+                int quantidade = Integer.parseInt(line[3]);
+                Pedidos pedido = new Pedidos(numeroPedido, codigoProduto, precoUnitario, quantidade);
+                pedidos.add(pedido);
+            }
+        } catch (IOException e) { /* Trata erros de leitura do arquivo */
+            System.out.println("Erro ao carregar arquivo: " + e.getMessage());
+        }
+    }
+
+    // Metodos de salvar o pedido
+
+    private static void salvarPedidos() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVOPedidos))) {
+            for (Pedidos pedidos : pedidos) { /* Para cada contato na lista */
+                writer.write(pedidos.getNumeroPedido() + ";" + pedidos.getCodigoProduto() + ";"
+                        + pedidos.getPrecoUnitario() + ";" + pedidos.getQuantidade());
                 writer.newLine(); /* Adiciona uma quebra de linha */
             }
         } catch (IOException e) { /* Trata erros de escrita no arquivo */
@@ -242,6 +281,8 @@ public class App {
             } else {
                 System.out.println("Digite um caracter válido");
             }
+        } else {
+            System.out.println("Produto não encontrado!");
         }
 
     }
@@ -260,4 +301,87 @@ public class App {
     }
 
     // Metodos Pedidos
+
+    public static Pedidos buscarPedido(int codigoPedido) {
+        for (Pedidos pedidos : pedidos) {
+            if (pedidos.getCodigoProduto() == codigoPedido) {
+                return pedidos;
+            }
+        }
+        return null;
+    }
+
+    public static void novoPedido() {
+        int numeroPedido = pedidos.size() + 1;
+        String opcaoString;
+
+        do {
+            System.out.println("Digite o código do produto que você deseja incluir no pedido:");
+            int opcaoInclusaoPedido = input.nextInt();
+            input.nextLine(); // Consome a quebra de linha após o número
+
+            Produtos produto = procurarProduto(opcaoInclusaoPedido);
+
+            if (produto != null) {
+                System.out.println("Informe a quantidade do pedido: ");
+                int quantidade = input.nextInt();
+                input.nextLine(); // Consome a quebra de linha após o número
+
+                if (produto.getQuantidadeEstoque() >= quantidade) {
+                    produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() - quantidade);
+                    salvarProduto();
+
+                    System.out.println(produto.getNomeProduto() + " adicionado ao pedido com sucesso!");
+                    Pedidos pedido = new Pedidos(numeroPedido, produto.getCodigoProduto(), produto.getPrecoUnitario(),
+                            quantidade);
+                    pedidos.add(pedido);
+                } else {
+                    System.out.println("Quantidade em estoque do " + produto.getNomeProduto()
+                            + " insuficiente para a quantidade informada");
+                }
+            } else {
+                System.out.println("Produto não encontrado!");
+            }
+
+            System.out.println("Deseja adicionar mais produtos ao pedido? (s/n): ");
+            opcaoString = input.nextLine();
+
+        } while (!opcaoString.equalsIgnoreCase("n"));
+
+        salvarPedidos();
+        
+    }
+
+    public static void listarPedidos() {
+        for (Pedidos pedido : pedidos) {
+            double valorTotalPedido = 0;
+
+            System.out.printf("Pedido número: %d%n", pedido.getNumeroPedido());
+            System.out
+                    .println("Produto                                         Preço unitário   Quantidade   Subtotal");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+
+            for (Pedidos produtoPedido : pedidos) {
+                if (produtoPedido.getNumeroPedido() == pedido.getNumeroPedido()) {
+                    Produtos produto = procurarProduto(produtoPedido.getCodigoProduto());
+
+                    if (produto != null) {
+                        double subtotal = produtoPedido.getPrecoUnitario() * pedido.getQuantidade();
+                        System.out.printf("%-45s %15.2f %10d %15.2f%n",
+                                produto.getNomeProduto(),
+                                produtoPedido.getPrecoUnitario(),
+                                pedido.getQuantidade(),
+                                subtotal);
+
+                        valorTotalPedido += subtotal;
+                    }
+                }
+            }
+
+            System.out.printf("Valor total do Pedido: R$%.2f%n", valorTotalPedido);
+            System.out.println();
+        }
+    }
+
 }
