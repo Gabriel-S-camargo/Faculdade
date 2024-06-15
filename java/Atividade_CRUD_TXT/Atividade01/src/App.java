@@ -34,21 +34,19 @@ public class App {
 
             switch (opcao) {
                 case 1:
-                    // System.out.println("[1] Produtos");
                     menuProdutos(input);
                     break;
                 case 2:
-                    // System.out.println("[2] Pedidos");
                     menuPedidos(input);
                     break;
                 case 3:
                     System.out.println("\nSistema Encerrando...");
                     salvarProduto();
                     salvarPedidos();
-                    System.exit(0); // Encerra o programa
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("opcao invalida !!");
+                    System.out.println("Digite uma opção válida");
                     break;
             }
         }
@@ -57,7 +55,7 @@ public class App {
     // Menu Dos Produtos
     public static void menuProdutos(Scanner input) {
         while (true) {
-            System.out.println("\n# Produtos #");
+            System.out.println("\n* Produtos *");
             System.out.println("[1] Incluir produto");
             System.out.println("[2] Editar quantidade estoque produto");
             System.out.println("[3] Editar preco unitario produto");
@@ -93,7 +91,7 @@ public class App {
                     salvarProduto();
                     return;
                 default:
-                    System.out.println("opcao invalida !!");
+                    System.out.println("Digite uma opção válida");
                     break;
             }
         }
@@ -102,7 +100,7 @@ public class App {
     // Menu Dos Pedidos
     public static void menuPedidos(Scanner input) {
         while (true) {
-            System.out.println("\n# Pedidos #");
+            System.out.println("\n* Pedidos *");
             System.out.println("[1] Novo pedido");
             System.out.println("[2] Listagem pedidos");
             System.out.println("[3] Voltar ao menu principal");
@@ -122,7 +120,7 @@ public class App {
                     System.out.println("\n");
                     return;
                 default:
-                    System.out.println("opcao invalida !!");
+                    System.out.println("Digite uma opção válida");
                     break;
             }
         }
@@ -290,16 +288,24 @@ public class App {
     }
 
     public static void listarProdutos() {
-        System.out.println("Código  Nome                                         Preço unitário  estoque");
-        System.out.println("---------------------------------------------------------------------------------------");
-        double valorTotalEstoque = 0;
-        for (Produtos produto : produtos) {
-            System.out.printf("%-7d %-45s %-16.2f %-18d%n", produto.getCodigoProduto(), produto.getNomeProduto(),
-                    produto.getPrecoUnitario(), produto.getQuantidadeEstoque());
-            valorTotalEstoque += produto.getPrecoUnitario() * produto.getQuantidadeEstoque();
+        if (produtos.isEmpty()) {
+            System.out.println("Nenhum Produto Regitrado!");
+        } else {
+
+            System.out.println("Código  Nome                                         Preço unitário  estoque");
+            System.out
+                    .println("---------------------------------------------------------------------------------------");
+            double valorTotalEstoque = 0;
+            for (Produtos produto : produtos) {
+                System.out.printf("%-7d %-45s %-16.2f %-18d%n", produto.getCodigoProduto(), produto.getNomeProduto(),
+                        produto.getPrecoUnitario(), produto.getQuantidadeEstoque());
+                valorTotalEstoque += produto.getPrecoUnitario() * produto.getQuantidadeEstoque();
+            }
+            System.out
+                    .println("---------------------------------------------------------------------------------------");
+            System.out.printf("Valor total estoque: %.2f%n", valorTotalEstoque);
         }
-        System.out.println("---------------------------------------------------------------------------------------");
-        System.out.printf("Valor total estoque: %.2f%n", valorTotalEstoque);
+
     }
 
     // Metodos Pedidos
@@ -313,12 +319,15 @@ public class App {
         return null;
     }
 
-    // Variavel estática para poder pegar o numero do ultimo pedido, o pedidos.size() estava incrementando na quantidade
-    // de registros no txt, dai estava pulando numeração
+    // Variavel estática para poder pegar o numero do ultimo pedido, o
+    // pedidos.size() estava incrementando na quantidade
+    // de registros no txt, dai estava pulando numeração comforme a quantidade de
+    // itens nos pedidos
 
     private static int ultimoNumeroPedido = 0;
+
     public static void novoPedido() {
-        ultimoNumeroPedido++; 
+        ultimoNumeroPedido++;
         int numeroPedido = ultimoNumeroPedido;
         String opcaoString;
 

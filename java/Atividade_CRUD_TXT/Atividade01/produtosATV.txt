@@ -1,3 +1,5 @@
-1;batata;2.0;10
-2;cenoura;2.5;5
-3;beterraba;4.0;5
+1;Saco de Batata - 50 KG;200.0;18
+2;Cesto de Morangos - 10 UN;15.0;7
+3;Buque Salsinha,Cebolinha e coentro;10.0;6
+4;Cesto Rabanete 5KG;35.0;13
+5;Kit Folhas verdes - Couve, Alface e Repolho;15.0;22
