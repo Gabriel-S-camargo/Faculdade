@@ -220,6 +220,8 @@ public class App {
         Produtos produto = new Produtos(codigoProduto, nomeProduto, precoUnitario, quantidadeEstoque);
         produtos.add(produto);
 
+        input.nextLine();
+
         salvarProduto();
     }
 
@@ -311,8 +313,13 @@ public class App {
         return null;
     }
 
+    // Variavel estática para poder pegar o numero do ultimo pedido, o pedidos.size() estava incrementando na quantidade
+    // de registros no txt, dai estava pulando numeração
+
+    private static int ultimoNumeroPedido = 0;
     public static void novoPedido() {
-        int numeroPedido = pedidos.size() + 1;
+        ultimoNumeroPedido++; 
+        int numeroPedido = ultimoNumeroPedido;
         String opcaoString;
 
         do {
@@ -349,38 +356,55 @@ public class App {
         } while (!opcaoString.equalsIgnoreCase("n"));
 
         salvarPedidos();
-        
     }
 
     public static void listarPedidos() {
-        for (Pedidos pedido : pedidos) {
-            double valorTotalPedido = 0;
 
-            System.out.printf("Pedido número: %d%n", pedido.getNumeroPedido());
-            System.out
-                    .println("Produto                                         Preço unitário   Quantidade   Subtotal");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
+        if (pedidos.isEmpty()) {
+            System.out.printf("\nLista de pedidos está vazia");
+        } else {
+            // Lista que recebe os produtos ja processados, unico jeito que pensei :(
+            List<Integer> pedidosProcessados = new ArrayList<>();
 
-            for (Pedidos produtoPedido : pedidos) {
-                if (produtoPedido.getNumeroPedido() == pedido.getNumeroPedido()) {
-                    Produtos produto = procurarProduto(produtoPedido.getCodigoProduto());
+            for (Pedidos pedido : pedidos) {
 
-                    if (produto != null) {
-                        double subtotal = produtoPedido.getPrecoUnitario() * pedido.getQuantidade();
-                        System.out.printf("%-45s %15.2f %10d %15.2f%n",
-                                produto.getNomeProduto(),
-                                produtoPedido.getPrecoUnitario(),
-                                pedido.getQuantidade(),
-                                subtotal);
+                // teste se ja tem um codigo registrado na lista, isso faz com que não ocorra
+                // duplicados, se tiver ele pula
 
-                        valorTotalPedido += subtotal;
+                if (pedidosProcessados.contains(pedido.getNumeroPedido())) {
+
+                    continue;
+                }
+
+                double valorTotalPedido = 0;
+                System.out.printf("Pedido número: %d%n", pedido.getNumeroPedido());
+                System.out.println(
+                        "Produto                                         Preço unitário   Quantidade   Subtotal");
+                System.out.println(
+                        "--------------------------------------------------------------------------------------");
+
+                for (Pedidos produtoPedido : pedidos) {
+                    if (produtoPedido.getNumeroPedido() == pedido.getNumeroPedido()) {
+                        Produtos produto = procurarProduto(produtoPedido.getCodigoProduto());
+
+                        if (produto != null) {
+                            double subtotal = produtoPedido.getPrecoUnitario() * produtoPedido.getQuantidade();
+                            System.out.printf("%-45s %15.2f %10d %15.2f%n",
+                                    produto.getNomeProduto(),
+                                    produtoPedido.getPrecoUnitario(),
+                                    produtoPedido.getQuantidade(),
+                                    subtotal);
+
+                            valorTotalPedido += subtotal;
+                        }
                     }
                 }
-            }
 
-            System.out.printf("Valor total do Pedido: R$%.2f%n", valorTotalPedido);
-            System.out.println();
+                System.out.printf("Valor total do Pedido: R$%.2f%n", valorTotalPedido);
+                System.out.println();
+
+                pedidosProcessados.add(pedido.getNumeroPedido()); // Marca esse número de pedido como processado
+            }
         }
     }
 
