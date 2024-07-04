@@ -372,7 +372,7 @@ public class App {
         if (pedidos.isEmpty()) {
             System.out.printf("\nLista de pedidos está vazia");
         } else {
-            // Lista que recebe os produtos ja processados, unico jeito que pensei :(
+            // Lista que recebe os produtos ja processados, unico jeito que pensei :
             List<Integer> pedidosProcessados = new ArrayList<>();
 
             for (Pedidos pedido : pedidos) {
